@@ -11,19 +11,19 @@
     <style>
       :root {
         color-scheme: dark;
-        --bg: #05080a;
-        --panel: #0d1517;
-        --ink: #f8f4e8;
-        --dim: #91a0a5;
-        --line: rgba(248, 244, 232, 0.13);
-        --line-strong: rgba(248, 244, 232, 0.25);
-        --blue: #6aa9ff;
-        --cyan: #00d1ff;
-        --green: #45f2a5;
-        --amber: #ffd166;
-        --rose: #ff5c7a;
-        --orange: #ff9f45;
-        --violet: #7c8cff;
+        --bg: #020404;
+        --panel: #0b1010;
+        --ink: #f8f2e6;
+        --dim: #829095;
+        --line: rgba(248, 242, 230, 0.13);
+        --line-strong: rgba(248, 242, 230, 0.26);
+        --blue: #5aa8ff;
+        --cyan: #2fe7d4;
+        --green: #8aff8a;
+        --amber: #f3c363;
+        --rose: #ff6e7f;
+        --orange: #ff9b54;
+        --violet: #9d8cff;
         --ease: cubic-bezier(0.52, 0.01, 0, 1);
         --max: 1440px;
         --gutter: clamp(20px, 4vw, 60px);
@@ -41,11 +41,9 @@
         margin: 0;
         overflow-x: hidden;
         background:
-          radial-gradient(circle at 18% 16%, rgba(0, 209, 255, 0.16), transparent 24rem),
-          radial-gradient(circle at 86% 12%, rgba(69, 242, 165, 0.12), transparent 22rem),
-          radial-gradient(circle at 74% 86%, rgba(255, 209, 102, 0.1), transparent 26rem),
-          radial-gradient(circle at 12% 88%, rgba(255, 92, 122, 0.08), transparent 24rem),
-          linear-gradient(180deg, #05080a 0%, #071014 48%, #05080a 100%),
+          linear-gradient(116deg, rgba(22, 68, 64, 0.48) 0%, transparent 34%),
+          linear-gradient(248deg, rgba(84, 62, 25, 0.34) 0%, transparent 42%),
+          linear-gradient(180deg, #020404 0%, #07100f 46%, #020404 100%),
           var(--bg);
         color: var(--ink);
         font-family:
@@ -153,6 +151,20 @@
         overflow: hidden;
       }
 
+      .hero::before {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        content: "";
+        opacity: 0.22;
+        background:
+          linear-gradient(115deg, transparent 0 25%, rgba(47, 231, 212, 0.22) 42%, transparent 61%),
+          linear-gradient(68deg, transparent 0 40%, rgba(243, 195, 99, 0.13) 54%, transparent 72%);
+        filter: blur(42px);
+        transform: translate3d(var(--mx, 0), var(--my, 0), 0);
+        transition: transform 0.8s var(--ease);
+      }
+
       .hero::after {
         position: absolute;
         inset: 86px var(--gutter) 42px;
@@ -186,10 +198,8 @@
 
       h1 span {
         display: inline-block;
-        color: transparent;
-        background: linear-gradient(90deg, var(--cyan), var(--green), var(--amber), var(--rose));
-        background-clip: text;
-        -webkit-background-clip: text;
+        color: var(--amber);
+        text-shadow: 0 0 34px rgba(243, 195, 99, 0.22);
       }
 
       .hero-copy {
@@ -210,9 +220,9 @@
 
       .globe-stage {
         position: relative;
-        width: min(430px, 100%);
+        width: min(500px, 100%);
         aspect-ratio: 1;
-        margin: 0 0 26px auto;
+        margin: 0 0 30px auto;
         cursor: grab;
         touch-action: none;
       }
@@ -232,19 +242,18 @@
 
       .globe-stage::before {
         background:
-          radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.5), transparent 10%),
-          radial-gradient(circle at 50% 50%, rgba(0, 209, 255, 0.16), transparent 48%),
-          conic-gradient(from 110deg, rgba(0, 209, 255, 0.56), rgba(124, 140, 255, 0.18), rgba(69, 242, 165, 0.46), rgba(255, 209, 102, 0.32), rgba(0, 209, 255, 0.56));
-        filter: blur(22px);
-        opacity: 0.74;
+          linear-gradient(135deg, rgba(47, 231, 212, 0.34), transparent 42%),
+          linear-gradient(315deg, rgba(243, 195, 99, 0.18), transparent 46%);
+        filter: blur(28px);
+        opacity: 0.78;
       }
 
       .globe-stage::after {
-        inset: 4%;
-        border: 1px solid rgba(255, 250, 240, 0.12);
+        inset: 2%;
+        border: 1px solid rgba(248, 242, 230, 0.1);
         box-shadow:
-          inset 0 0 50px rgba(255, 250, 240, 0.08),
-          0 0 80px rgba(0, 209, 255, 0.17);
+          inset 0 0 58px rgba(248, 242, 230, 0.08),
+          0 0 96px rgba(47, 231, 212, 0.16);
       }
 
       #globe {
@@ -270,19 +279,7 @@
       }
 
       .globe-label {
-        position: absolute;
-        z-index: 4;
-        transform: translate(-50%, -50%);
-        border: 1px solid rgba(255, 250, 240, 0.16);
-        border-radius: 999px;
-        padding: 7px 10px;
-        color: rgba(255, 250, 240, 0.82);
-        background: rgba(9, 10, 12, 0.58);
-        box-shadow: 0 10px 34px rgba(0, 0, 0, 0.24);
-        backdrop-filter: blur(14px);
-        font-size: 12px;
-        transition: opacity 0.2s ease;
-        white-space: nowrap;
+        display: none;
       }
 
       .meta {
@@ -862,76 +859,78 @@
         color: var(--dim);
       }
 
-      .contact-grid {
+      .contact-panel {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 34px 0 72px;
+      }
+
+      .contact-row {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 460px);
+        gap: 42px;
+        align-items: start;
       }
 
-      .contact-card {
-        min-height: 174px;
+      .contact-row h2 {
+        max-width: 10ch;
+        margin: 0;
+        font-size: 5.75rem;
+        font-weight: 400;
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      .contact-note {
+        margin: 0;
+        color: rgba(248, 242, 230, 0.78);
+        font-size: 1.55rem;
+        line-height: 1.45;
+      }
+
+      .contact-email {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        padding: 20px;
-        background:
-          linear-gradient(135deg, rgba(255, 255, 255, 0.09), transparent),
-          rgba(255, 250, 240, 0.04);
-        transition:
-          transform 0.5s var(--ease),
-          border-color 0.5s var(--ease),
-          background 0.5s var(--ease);
-      }
-
-      .contact-card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(255, 250, 240, 0.28);
-        background:
-          linear-gradient(135deg, rgba(50, 213, 255, 0.12), rgba(255, 101, 127, 0.08)),
-          rgba(255, 250, 240, 0.055);
-      }
-
-      .contact-card > span {
-        color: var(--dim);
-        font-size: 13px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .contact-card b {
+        width: 100%;
+        margin-top: 76px;
+        color: var(--ink);
+        font-size: 6.7rem;
+        line-height: 0.96;
+        letter-spacing: 0;
         overflow-wrap: anywhere;
-        font-size: 1.8rem;
-        font-weight: 500;
-        line-height: 1.02;
-        letter-spacing: 0;
-      }
-
-      .contact-card b span {
-        display: block;
-        color: inherit;
-        font-size: inherit;
-        letter-spacing: 0;
-        text-transform: none;
-      }
-
-      .contact-link {
-        display: inline-block;
-        font-size: 6.375rem;
-        line-height: 1;
-        letter-spacing: 0;
         transition:
-          transform 0.6s var(--ease),
-          text-shadow 0.6s var(--ease);
+          color 0.5s var(--ease),
+          transform 0.5s var(--ease),
+          text-shadow 0.5s var(--ease);
       }
 
-      .contact-link:hover {
+      .contact-email:hover {
+        color: var(--amber);
         transform: translateX(8px);
-        text-shadow:
-          -4px 0 var(--rose),
-          4px 0 var(--blue),
-          0 4px var(--green);
+        text-shadow: 0 0 44px rgba(243, 195, 99, 0.18);
+      }
+
+      .contact-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .contact-meta a {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 9px 13px;
+        color: var(--dim);
+        background: rgba(248, 242, 230, 0.045);
+        font-size: 14px;
+        transition:
+          color 0.5s var(--ease),
+          border-color 0.5s var(--ease);
+      }
+
+      .contact-meta a:hover {
+        color: var(--ink);
+        border-color: rgba(248, 242, 230, 0.32);
       }
 
       .footer {
@@ -941,6 +940,7 @@
       .footer-row {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 24px;
         border-top: 1px solid var(--line);
         padding-top: 20px;
@@ -948,6 +948,15 @@
         font-size: 13px;
         letter-spacing: 0.08em;
         text-transform: uppercase;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 32px;
+      }
+
+      .footer-links a:hover {
+        color: var(--ink);
       }
 
       .reveal {
@@ -966,7 +975,7 @@
       @media (max-width: 960px) {
         .hero-grid,
         .section-head,
-        .contact-grid,
+        .contact-row,
         .tab--ceterus,
         .tab--fundops,
         .tab--loam,
@@ -985,8 +994,13 @@
         }
 
         .section-head h2,
-        .tab h3 {
+        .tab h3,
+        .contact-row h2 {
           font-size: 4.75rem;
+        }
+
+        .contact-email {
+          font-size: 4.8rem;
         }
 
         .globe-stage {
@@ -1028,7 +1042,8 @@
         }
 
         .section-head h2,
-        .tab h3 {
+        .tab h3,
+        .contact-row h2 {
           font-size: 3.25rem;
         }
 
@@ -1036,8 +1051,17 @@
           font-size: 1.2rem;
         }
 
-        .contact-card b {
-          font-size: 1.45rem;
+        .contact-row {
+          gap: 26px;
+        }
+
+        .contact-note {
+          font-size: 1.2rem;
+        }
+
+        .contact-email {
+          margin-top: 40px;
+          font-size: 2.35rem;
         }
 
         .hero-grid {
@@ -1062,6 +1086,7 @@
 
         .footer-row {
           flex-direction: column;
+          align-items: flex-start;
         }
 
         .globe-hint {
@@ -1112,10 +1137,6 @@
             aria-label="Interactive globe showing the project world around Noor's work."
           >
             <canvas id="globe" width="900" height="900"></canvas>
-            <span class="globe-label" data-globe-label="Ceterus" data-lat="38" data-lon="-74">Ceterus</span>
-            <span class="globe-label" data-globe-label="Sarmayacar" data-lat="31" data-lon="74">Sarmayacar</span>
-            <span class="globe-label" data-globe-label="Loam" data-lat="52" data-lon="-1">Loam</span>
-            <span class="globe-label" data-globe-label="GitHub" data-lat="37" data-lon="-122">GitHub</span>
             <span class="globe-hint">drag the globe</span>
           </div>
           <p class="meta">
@@ -1348,28 +1369,21 @@
 
       <section id="contact">
         <div class="wrap">
-          <p class="eyebrow reveal"><span>Say hi</span><small>Or just look around.</small></p>
-          <div class="section-head">
-            <h2 class="reveal">Want to talk about a build?</h2>
-            <p class="reveal">
-              I'm usually somewhere between a spreadsheet, a model, and a half
-              working prototype. Send a note, browse the repos, or find me on
-              LinkedIn.
-            </p>
-          </div>
-          <div class="contact-grid reveal">
-            <a class="contact-card" href="mailto:noorfatimazeb@gmail.com">
-              <span>Email</span>
-              <b><span>noorfatimazeb</span><span>@gmail.com</span></b>
-            </a>
-            <a class="contact-card" href="https://github.com/nfzkbh201">
-              <span>GitHub</span>
-              <b>github.com/nfzkbh201</b>
-            </a>
-            <a class="contact-card" href="https://www.linkedin.com/in/noorzebkhan/">
-              <span>LinkedIn</span>
-              <b><span>linkedin.com/in</span><span>/noorzebkhan</span></b>
-            </a>
+          <p class="eyebrow reveal"><span>Say hi</span><small>I do reply, eventually.</small></p>
+          <div class="contact-panel reveal">
+            <div class="contact-row">
+              <h2>Want to say hi?</h2>
+              <p class="contact-note">
+                If you liked something here, need a finance workflow untangled,
+                or want to make something strange and useful together, send me
+                an email.
+              </p>
+            </div>
+            <a class="contact-email" href="mailto:noorfatimazeb@gmail.com">noorfatimazeb@gmail.com</a>
+            <div class="contact-meta">
+              <a href="https://github.com/nfzkbh201">GitHub</a>
+              <a href="https://www.linkedin.com/in/noorzebkhan/">LinkedIn</a>
+            </div>
           </div>
         </div>
       </section>
@@ -1378,7 +1392,11 @@
     <footer class="footer">
       <div class="wrap footer-row">
         <span>© 2026 Noor Zeb Khan</span>
-        <span>Built for GitHub Pages</span>
+        <div class="footer-links" aria-label="Footer navigation">
+          <a href="#work">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Say hi</a>
+        </div>
       </div>
     </footer>
 
@@ -1394,34 +1412,58 @@
 
       document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
+      const hero = document.querySelector(".hero");
       const globeCanvas = document.querySelector("#globe");
       const globeStage = document.querySelector(".globe-stage");
-      const globeLabels = [...document.querySelectorAll("[data-globe-label]")];
+
+      if (hero) {
+        window.addEventListener("pointermove", (event) => {
+          const x = (event.clientX / window.innerWidth - 0.5) * 22;
+          const y = (event.clientY / window.innerHeight - 0.5) * 18;
+          hero.style.setProperty("--mx", `${x}px`);
+          hero.style.setProperty("--my", `${y}px`);
+        });
+      }
 
       if (globeCanvas && globeStage) {
         const ctx = globeCanvas.getContext("2d");
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const points = [];
-        const arcs = [
-          { from: [31, 74], to: [38, -74], color: "#32d5ff" },
-          { from: [31, 74], to: [52, -1], color: "#43d99d" },
-          { from: [31, 74], to: [37, -122], color: "#ff8a3d" },
-          { from: [52, -1], to: [37, -122], color: "#ac8bff" }
+        const continents = [
+          [[72, -168], [60, -138], [54, -124], [50, -104], [44, -84], [31, -82], [16, -93], [8, -80], [18, -63], [34, -64], [48, -70], [58, -90], [68, -120], [72, -168]],
+          [[13, -82], [7, -76], [-7, -78], [-21, -70], [-38, -62], [-54, -70], [-45, -52], [-26, -44], [-9, -36], [5, -50], [13, -82]],
+          [[83, -74], [73, -20], [62, -18], [59, -44], [70, -62], [83, -74]],
+          [[71, -10], [62, 24], [51, 32], [42, 16], [36, -6], [48, -11], [60, -5], [71, -10]],
+          [[35, -17], [31, 10], [12, 32], [-5, 40], [-28, 30], [-35, 18], [-26, 3], [-5, -11], [17, -16], [35, -17]],
+          [[72, 28], [64, 78], [57, 128], [48, 156], [32, 140], [22, 104], [6, 96], [17, 74], [29, 46], [45, 36], [58, 34], [72, 28]],
+          [[30, 34], [24, 58], [12, 56], [14, 42], [30, 34]],
+          [[24, 68], [7, 80], [9, 91], [23, 88], [29, 77], [24, 68]],
+          [[6, 99], [-7, 115], [-9, 138], [7, 128], [17, 106], [6, 99]],
+          [[-10, 113], [-24, 118], [-39, 145], [-31, 154], [-18, 145], [-10, 113]],
+          [[-62, -64], [-72, 20], [-68, 112], [-74, 178], [-80, -90], [-62, -64]]
         ];
+        const cloudBands = [
+          { lat: 24, tilt: 0.14, speed: 0.45 },
+          { lat: -18, tilt: -0.08, speed: -0.32 },
+          { lat: 52, tilt: 0.1, speed: 0.22 }
+        ];
+        const stars = Array.from({ length: 76 }, (_, index) => {
+          const seed = Math.sin(index * 999) * 10000;
+          const seed2 = Math.sin(index * 377) * 10000;
+          return {
+            x: seed - Math.floor(seed),
+            y: seed2 - Math.floor(seed2),
+            size: 0.5 + ((index * 13) % 9) / 10
+          };
+        });
         let width = 0;
         let height = 0;
         let radius = 0;
-        let rotationX = -0.34;
-        let rotationY = 0.62;
+        let rotationX = -0.28;
+        let rotationY = 0.28;
         let dragging = false;
         let lastX = 0;
         let lastY = 0;
-
-        for (let lat = -60; lat <= 60; lat += 12) {
-          for (let lon = -180; lon < 180; lon += 18) {
-            points.push([lat, lon]);
-          }
-        }
+        let time = 0;
 
         const toRad = (value) => (value * Math.PI) / 180;
 
@@ -1440,8 +1482,7 @@
           return {
             x: width / 2 + x * radius,
             y: height / 2 - y2 * radius,
-            z: z2,
-            visible: z2 > -0.18
+            z: z2
           };
         };
 
@@ -1450,7 +1491,7 @@
           const ratio = Math.min(window.devicePixelRatio || 1, 2);
           width = box.width;
           height = box.height;
-          radius = Math.min(width, height) * 0.36;
+          radius = Math.min(width, height) * 0.39;
           globeCanvas.width = Math.floor(width * ratio);
           globeCanvas.height = Math.floor(height * ratio);
           globeCanvas.style.width = `${width}px`;
@@ -1458,102 +1499,154 @@
           ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
         };
 
-        const drawArc = (from, to, color) => {
-          const a = project(from[0], from[1]);
-          const b = project(to[0], to[1]);
-          if (!a.visible && !b.visible) return;
-
-          const cx = (a.x + b.x) / 2 + (width / 2 - (a.x + b.x) / 2) * 0.25;
-          const cy = (a.y + b.y) / 2 - radius * 0.28;
+        const drawSpherePath = () => {
           ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.quadraticCurveTo(cx, cy, b.x, b.y);
-          ctx.strokeStyle = color;
-          ctx.globalAlpha = 0.36;
-          ctx.lineWidth = 1.6;
+          ctx.arc(width / 2, height / 2, radius, 0, Math.PI * 2);
+        };
+
+        const drawPolyline = (coords, stroke, lineWidth, alpha = 1, extraRotation = 0) => {
+          ctx.beginPath();
+          let active = false;
+          coords.forEach(([lat, lon]) => {
+            const p = project(lat, lon, extraRotation);
+            if (p.z < -0.12) {
+              active = false;
+              return;
+            }
+            if (!active) {
+              ctx.moveTo(p.x, p.y);
+              active = true;
+            } else {
+              ctx.lineTo(p.x, p.y);
+            }
+          });
+          ctx.globalAlpha = alpha;
+          ctx.strokeStyle = stroke;
+          ctx.lineWidth = lineWidth;
           ctx.stroke();
           ctx.globalAlpha = 1;
         };
 
-        const drawGlobe = () => {
-          ctx.clearRect(0, 0, width, height);
+        const drawLand = () => {
+          continents.forEach((shape) => {
+            const visible = shape.some(([lat, lon]) => project(lat, lon).z > -0.18);
+            if (!visible) return;
 
-          const glow = ctx.createRadialGradient(
-            width * 0.38,
-            height * 0.28,
-            radius * 0.08,
-            width / 2,
-            height / 2,
-            radius * 1.12
-          );
-          glow.addColorStop(0, "rgba(255, 255, 255, 0.42)");
-          glow.addColorStop(0.26, "rgba(50, 213, 255, 0.18)");
-          glow.addColorStop(0.68, "rgba(172, 139, 255, 0.08)");
-          glow.addColorStop(1, "rgba(9, 10, 12, 0)");
-
-          ctx.beginPath();
-          ctx.arc(width / 2, height / 2, radius, 0, Math.PI * 2);
-          ctx.fillStyle = glow;
-          ctx.fill();
-          ctx.strokeStyle = "rgba(255, 250, 240, 0.2)";
-          ctx.lineWidth = 1.2;
-          ctx.stroke();
-
-          ctx.save();
-          ctx.beginPath();
-          ctx.arc(width / 2, height / 2, radius, 0, Math.PI * 2);
-          ctx.clip();
-
-          for (let lat = -60; lat <= 60; lat += 20) {
             ctx.beginPath();
-            for (let lon = -180; lon <= 180; lon += 6) {
+            shape.forEach(([lat, lon], index) => {
               const p = project(lat, lon);
-              if (lon === -180) ctx.moveTo(p.x, p.y);
+              if (index === 0) ctx.moveTo(p.x, p.y);
               else ctx.lineTo(p.x, p.y);
-            }
-            ctx.strokeStyle = "rgba(255, 250, 240, 0.13)";
-            ctx.lineWidth = 1;
+            });
+            ctx.closePath();
+
+            const land = ctx.createLinearGradient(width * 0.28, height * 0.18, width * 0.76, height * 0.86);
+            land.addColorStop(0, "#c7b879");
+            land.addColorStop(0.34, "#63794a");
+            land.addColorStop(0.68, "#245846");
+            land.addColorStop(1, "#122a2b");
+            ctx.fillStyle = land;
+            ctx.fill();
+            ctx.strokeStyle = "rgba(248, 242, 230, 0.24)";
+            ctx.lineWidth = 0.9;
             ctx.stroke();
+          });
+        };
+
+        const drawGrid = () => {
+          for (let lat = -60; lat <= 60; lat += 20) {
+            const coords = [];
+            for (let lon = -180; lon <= 180; lon += 4) coords.push([lat, lon]);
+            drawPolyline(coords, "rgba(248, 242, 230, 0.12)", 0.8, 0.75);
           }
 
           for (let lon = -180; lon < 180; lon += 30) {
-            ctx.beginPath();
-            for (let lat = -78; lat <= 78; lat += 4) {
-              const p = project(lat, lon);
-              if (lat === -78) ctx.moveTo(p.x, p.y);
-              else ctx.lineTo(p.x, p.y);
-            }
-            ctx.strokeStyle = "rgba(255, 250, 240, 0.09)";
-            ctx.lineWidth = 1;
-            ctx.stroke();
+            const coords = [];
+            for (let lat = -80; lat <= 80; lat += 3) coords.push([lat, lon]);
+            drawPolyline(coords, "rgba(248, 242, 230, 0.08)", 0.7, 0.65);
           }
+        };
 
-          arcs.forEach((arc) => drawArc(arc.from, arc.to, arc.color));
+        const drawClouds = () => {
+          cloudBands.forEach((band) => {
+            const coords = [];
+            for (let lon = -190; lon <= 190; lon += 4) {
+              const wobble = Math.sin(toRad(lon * 2.1) + time * band.speed) * 5;
+              coords.push([band.lat + wobble, lon + band.tilt * 45]);
+            }
+            drawPolyline(coords, "rgba(248, 242, 230, 0.34)", 2.4, 0.55, time * band.speed);
+          });
+        };
 
-          points.forEach(([lat, lon]) => {
-            const p = project(lat, lon);
-            if (!p.visible) return;
-            const size = 1.2 + Math.max(p.z, 0) * 2.2;
+        const drawGlobe = () => {
+          time += 0.01;
+          ctx.clearRect(0, 0, width, height);
+
+          stars.forEach((star) => {
+            ctx.globalAlpha = 0.18 + Math.sin(time * 2 + star.x * 10) * 0.08;
+            ctx.fillStyle = "#f8f2e6";
             ctx.beginPath();
-            ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(255, 250, 240, 0.58)";
+            ctx.arc(star.x * width, star.y * height, star.size, 0, Math.PI * 2);
             ctx.fill();
           });
+          ctx.globalAlpha = 1;
 
-          globeLabels.forEach((label) => {
-            const p = project(Number(label.dataset.lat), Number(label.dataset.lon));
-            label.style.left = `${p.x}px`;
-            label.style.top = `${p.y}px`;
-            label.style.opacity = p.visible ? "1" : "0.12";
-          });
+          const atmosphere = ctx.createRadialGradient(width * 0.36, height * 0.28, radius * 0.2, width / 2, height / 2, radius * 1.38);
+          atmosphere.addColorStop(0, "rgba(248, 242, 230, 0.2)");
+          atmosphere.addColorStop(0.34, "rgba(47, 231, 212, 0.18)");
+          atmosphere.addColorStop(0.72, "rgba(90, 168, 255, 0.13)");
+          atmosphere.addColorStop(1, "rgba(47, 231, 212, 0)");
+          ctx.fillStyle = atmosphere;
+          ctx.beginPath();
+          ctx.arc(width / 2, height / 2, radius * 1.26, 0, Math.PI * 2);
+          ctx.fill();
+
+          drawSpherePath();
+          const ocean = ctx.createRadialGradient(width * 0.36, height * 0.28, radius * 0.08, width * 0.57, height * 0.61, radius);
+          ocean.addColorStop(0, "#95f1db");
+          ocean.addColorStop(0.22, "#246d79");
+          ocean.addColorStop(0.58, "#14324f");
+          ocean.addColorStop(1, "#07111b");
+          ctx.fillStyle = ocean;
+          ctx.fill();
+
+          ctx.save();
+          drawSpherePath();
+          ctx.clip();
+          drawLand();
+          drawGrid();
+          drawClouds();
+
+          const night = ctx.createRadialGradient(width * 0.15, height * 0.18, radius * 0.1, width * 0.78, height * 0.74, radius * 1.16);
+          night.addColorStop(0, "rgba(0, 0, 0, 0)");
+          night.addColorStop(0.5, "rgba(0, 0, 0, 0.12)");
+          night.addColorStop(1, "rgba(0, 0, 0, 0.68)");
+          ctx.fillStyle = night;
+          ctx.fillRect(0, 0, width, height);
 
           ctx.restore();
+
+          const shine = ctx.createRadialGradient(width * 0.38, height * 0.29, 0, width * 0.38, height * 0.29, radius * 0.42);
+          shine.addColorStop(0, "rgba(255, 255, 255, 0.38)");
+          shine.addColorStop(0.42, "rgba(255, 255, 255, 0.08)");
+          shine.addColorStop(1, "rgba(255, 255, 255, 0)");
+          ctx.fillStyle = shine;
+          drawSpherePath();
+          ctx.fill();
+
+          drawSpherePath();
+          ctx.strokeStyle = "rgba(248, 242, 230, 0.26)";
+          ctx.lineWidth = 1.1;
+          ctx.stroke();
+
+          drawSpherePath();
+          ctx.strokeStyle = "rgba(47, 231, 212, 0.32)";
+          ctx.lineWidth = 7;
+          ctx.stroke();
         };
 
         const animateGlobe = () => {
-          if (!dragging && !prefersReducedMotion) {
-            rotationY += 0.0036;
-          }
+          if (!dragging && !prefersReducedMotion) rotationY += 0.0028;
           drawGlobe();
           requestAnimationFrame(animateGlobe);
         };
@@ -1570,7 +1663,7 @@
           const dx = event.clientX - lastX;
           const dy = event.clientY - lastY;
           rotationY += dx * 0.008;
-          rotationX = Math.max(-1.1, Math.min(1.1, rotationX + dy * 0.006));
+          rotationX = Math.max(-0.95, Math.min(0.95, rotationX + dy * 0.006));
           lastX = event.clientX;
           lastY = event.clientY;
         });
