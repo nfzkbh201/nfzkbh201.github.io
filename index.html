@@ -5,23 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Noor Zeb Khan's project portfolio: AI systems, benchmarks, automation, and internal tools."
+      content="Noor Zeb Khan's project gallery: tools built for work, curiosity, and the fun of making them real."
     />
-    <title>Noor Zeb Khan | Projects</title>
+    <title>Noor Zeb Khan | Project Gallery</title>
     <style>
       :root {
-        color-scheme: light;
-        --bg: #f7f8f4;
-        --paper: #ffffff;
-        --ink: #172033;
-        --muted: #667085;
-        --line: #d9ded6;
-        --green: #0d7a61;
-        --green-dark: #075543;
-        --blue: #244f8f;
-        --gold: #b7791f;
-        --rose: #a23a52;
-        --shadow: 0 24px 70px rgba(23, 32, 51, 0.12);
+        color-scheme: dark;
+        --bg: #090a0c;
+        --panel: #11151b;
+        --ink: #fffaf0;
+        --dim: #8290a1;
+        --line: rgba(255, 250, 240, 0.13);
+        --line-strong: rgba(255, 250, 240, 0.24);
+        --blue: #6aa9ff;
+        --green: #43d99d;
+        --amber: #f6b85a;
+        --rose: #ff657f;
+        --violet: #ac8bff;
+        --ease: cubic-bezier(0.52, 0.01, 0, 1);
+        --max: 1440px;
+        --gutter: clamp(20px, 4vw, 60px);
       }
 
       * {
@@ -34,642 +37,1167 @@
 
       body {
         margin: 0;
+        overflow-x: hidden;
+        background:
+          radial-gradient(circle at 15% 12%, rgba(106, 169, 255, 0.18), transparent 26rem),
+          radial-gradient(circle at 82% 8%, rgba(172, 139, 255, 0.16), transparent 24rem),
+          radial-gradient(circle at 60% 90%, rgba(67, 217, 157, 0.1), transparent 28rem),
+          var(--bg);
+        color: var(--ink);
         font-family:
-          Inter,
           ui-sans-serif,
           system-ui,
           -apple-system,
           BlinkMacSystemFont,
           "Segoe UI",
           sans-serif;
-        color: var(--ink);
-        background: var(--bg);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body::before {
+        position: fixed;
+        inset: -50%;
+        z-index: 100;
+        pointer-events: none;
+        content: "";
+        opacity: 0.05;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        animation: grain 1.4s steps(5) infinite;
+      }
+
+      @keyframes grain {
+        0% { transform: translate(0, 0); }
+        20% { transform: translate(-2%, 1%); }
+        40% { transform: translate(1%, -3%); }
+        60% { transform: translate(-1%, 2%); }
+        80% { transform: translate(2%, 1%); }
+        100% { transform: translate(0, 0); }
       }
 
       a {
         color: inherit;
+        text-decoration: none;
       }
 
-      .site-shell {
-        min-height: 100vh;
-      }
-
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        border-bottom: 1px solid rgba(217, 222, 214, 0.85);
-        background: rgba(247, 248, 244, 0.88);
-        backdrop-filter: blur(14px);
-      }
-
-      nav {
-        width: min(1120px, calc(100vw - 32px));
-        min-height: 64px;
+      .wrap {
+        width: min(var(--max), 100%);
         margin: 0 auto;
+        padding: 0 var(--gutter);
+      }
+
+      .nav {
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 20;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 24px;
+        padding: 22px var(--gutter);
+        background: linear-gradient(180deg, rgba(9, 10, 12, 0.88), rgba(9, 10, 12, 0));
       }
 
-      .brand {
+      .mark {
         display: inline-flex;
         align-items: center;
         gap: 12px;
-        text-decoration: none;
-        font-weight: 800;
+        font-weight: 700;
       }
 
-      .brand-mark {
-        width: 34px;
-        height: 34px;
-        display: grid;
-        place-items: center;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        color: var(--green-dark);
-        background: var(--paper);
+      .mark i {
+        width: 11px;
+        height: 11px;
+        border: 1px solid var(--ink);
+        transform: rotate(45deg);
+        transition: transform 0.8s var(--ease);
+      }
+
+      .mark:hover i {
+        transform: rotate(225deg);
       }
 
       .nav-links {
         display: flex;
-        align-items: center;
-        gap: 18px;
-        color: var(--muted);
-        font-size: 0.94rem;
+        gap: 4px;
+        padding: 4px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(9, 10, 12, 0.58);
+        backdrop-filter: blur(16px);
       }
 
       .nav-links a {
-        text-decoration: none;
+        border-radius: 999px;
+        padding: 8px 16px;
+        color: rgba(255, 250, 240, 0.72);
+        font-size: 14px;
+        transition:
+          background 0.5s var(--ease),
+          color 0.5s var(--ease);
       }
 
       .nav-links a:hover {
         color: var(--ink);
-      }
-
-      main {
-        width: min(1120px, calc(100vw - 32px));
-        margin: 0 auto;
+        background: rgba(255, 250, 240, 0.1);
       }
 
       .hero {
-        min-height: calc(100vh - 64px);
+        position: relative;
+        min-height: 100vh;
+        min-height: 100svh;
         display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
-        gap: clamp(28px, 5vw, 72px);
         align-items: center;
-        padding: 48px 0 72px;
+        overflow: hidden;
       }
 
-      .eyebrow {
-        margin: 0 0 14px;
-        color: var(--green-dark);
-        font-size: 0.8rem;
-        font-weight: 800;
-        letter-spacing: 0;
-        text-transform: uppercase;
+      .prism {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
       }
 
-      h1,
-      h2,
-      h3,
-      p {
-        margin-top: 0;
+      .prism span {
+        position: absolute;
+        width: 38vw;
+        aspect-ratio: 1;
+        border: 1px solid rgba(255, 250, 240, 0.1);
+        transform: rotate(45deg);
+        filter: blur(0.3px);
+      }
+
+      .prism span:nth-child(1) {
+        top: 8%;
+        right: 5%;
+        background: linear-gradient(135deg, rgba(106, 169, 255, 0.13), transparent);
+      }
+
+      .prism span:nth-child(2) {
+        bottom: -12%;
+        left: 14%;
+        width: 28vw;
+        background: linear-gradient(135deg, rgba(67, 217, 157, 0.12), transparent);
+      }
+
+      .prism span:nth-child(3) {
+        top: 38%;
+        left: -10%;
+        width: 22vw;
+        background: linear-gradient(135deg, rgba(255, 101, 127, 0.1), transparent);
+      }
+
+      .hero-grid {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+        gap: clamp(32px, 6vw, 84px);
+        padding-top: 110px;
       }
 
       h1 {
-        margin-bottom: 20px;
-        font-size: clamp(3rem, 8vw, 6.75rem);
-        line-height: 0.95;
-        letter-spacing: 0;
+        max-width: 11ch;
+        margin: 0;
+        font-size: clamp(64px, 11vw, 156px);
+        font-weight: 400;
+        line-height: 0.93;
+        letter-spacing: -0.04em;
+      }
+
+      .hero-copy {
+        align-self: end;
+        padding-bottom: 12px;
+      }
+
+      .meta {
+        margin: 0 0 26px;
+        display: grid;
+        gap: 8px;
+        color: var(--dim);
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
       }
 
       .lead {
-        max-width: 68ch;
-        margin-bottom: 30px;
-        color: #3f4b5f;
-        font-size: clamp(1.08rem, 2vw, 1.28rem);
-        line-height: 1.75;
+        margin: 0;
+        color: rgba(255, 250, 240, 0.82);
+        font-size: clamp(19px, 2vw, 24px);
+        line-height: 1.5;
       }
 
-      .actions {
+      .hero-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
+        margin-top: 26px;
       }
 
       .button {
-        min-height: 46px;
+        min-height: 42px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 9px;
-        border: 1px solid var(--green);
-        border-radius: 6px;
-        padding: 0 18px;
-        color: var(--paper);
-        background: var(--green);
-        font-weight: 800;
-        text-decoration: none;
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        padding: 0 17px;
+        color: var(--ink);
+        background: rgba(255, 250, 240, 0.08);
+        font-weight: 700;
+        transition:
+          transform 0.5s var(--ease),
+          background 0.5s var(--ease);
       }
 
-      .button.secondary {
-        color: var(--green-dark);
-        background: transparent;
+      .button:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 250, 240, 0.15);
       }
 
-      .profile-panel {
-        padding: 24px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: var(--paper);
-        box-shadow: var(--shadow);
-      }
-
-      .profile-top {
+      .profile {
+        margin-top: 32px;
         display: flex;
         align-items: center;
-        gap: 18px;
+        gap: 14px;
       }
 
-      .avatar {
-        width: 92px;
-        height: 92px;
-        flex: 0 0 auto;
-        border-radius: 8px;
-        object-fit: cover;
+      .profile img {
+        width: 56px;
+        height: 56px;
         border: 1px solid var(--line);
+        border-radius: 14px;
       }
 
-      .profile-panel h2 {
-        margin-bottom: 6px;
-        font-size: 1.35rem;
-      }
-
-      .profile-panel p {
-        color: var(--muted);
-        line-height: 1.6;
-      }
-
-      .stats {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        margin-top: 22px;
-      }
-
-      .stat {
-        padding: 14px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: #fbfcfa;
-      }
-
-      .stat strong {
+      .profile b {
         display: block;
+      }
+
+      .profile span {
+        display: block;
+        color: var(--dim);
+        font-size: 14px;
+      }
+
+      .marquee {
+        overflow: hidden;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 16px 0;
+        color: var(--dim);
+        white-space: nowrap;
+      }
+
+      .marquee-track {
+        display: inline-flex;
+        gap: 56px;
+        min-width: max-content;
+        animation: slide 42s linear infinite;
+      }
+
+      .marquee-track span {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 13px;
+      }
+
+      .marquee-track em {
         color: var(--ink);
-        font-size: 1.35rem;
+        font-style: normal;
       }
 
-      .stat span {
-        display: block;
-        margin-top: 4px;
-        color: var(--muted);
-        font-size: 0.82rem;
-        line-height: 1.35;
+      @keyframes slide {
+        to { transform: translateX(-50%); }
       }
 
       section {
-        padding: 56px 0;
+        padding: 108px 0;
       }
 
-      .section-heading {
+      .eyebrow {
+        margin: 0 0 38px;
+        padding-bottom: 18px;
         display: flex;
-        align-items: end;
+        align-items: baseline;
         justify-content: space-between;
-        gap: 24px;
-        margin-bottom: 24px;
+        gap: 18px;
+        border-bottom: 1px solid var(--line);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 13px;
       }
 
-      .section-heading h2 {
-        margin-bottom: 0;
-        font-size: clamp(2rem, 4vw, 3.4rem);
-        line-height: 1;
+      .eyebrow small {
+        color: var(--dim);
+        text-transform: none;
         letter-spacing: 0;
+        font-size: 15px;
       }
 
-      .section-heading p {
-        max-width: 44ch;
-        margin-bottom: 0;
-        color: var(--muted);
-        line-height: 1.65;
-      }
-
-      .project-grid {
+      .section-head {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 440px);
+        gap: 44px;
+        margin-bottom: 56px;
       }
 
-      .project-card {
-        min-height: 300px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 22px;
-        padding: 24px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: var(--paper);
+      .section-head h2 {
+        max-width: 13ch;
+        margin: 0;
+        font-size: clamp(42px, 7vw, 92px);
+        font-weight: 400;
+        line-height: 0.98;
+        letter-spacing: -0.035em;
       }
 
-      .project-kicker {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 18px;
-      }
-
-      .project-icon {
-        width: 46px;
-        height: 46px;
-        display: grid;
-        place-items: center;
-        border-radius: 8px;
-        color: var(--paper);
-        font-weight: 900;
-      }
-
-      .project-icon.green {
-        background: var(--green);
-      }
-
-      .project-icon.blue {
-        background: var(--blue);
-      }
-
-      .project-icon.gold {
-        background: var(--gold);
-      }
-
-      .project-icon.rose {
-        background: var(--rose);
-      }
-
-      .tag {
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 6px 10px;
-        color: var(--muted);
-        font-size: 0.78rem;
-        font-weight: 700;
-      }
-
-      .project-card h3 {
-        margin-bottom: 10px;
-        font-size: 1.45rem;
-      }
-
-      .project-card p {
-        color: var(--muted);
-        line-height: 1.65;
-      }
-
-      .project-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-
-      .project-links a {
-        color: var(--green-dark);
-        font-weight: 800;
-        text-decoration: none;
-      }
-
-      .project-links a:hover {
-        text-decoration: underline;
-      }
-
-      .skills {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
-      }
-
-      .skill {
-        min-height: 118px;
-        padding: 18px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: #fbfcfa;
-      }
-
-      .skill h3 {
-        margin-bottom: 8px;
-        font-size: 1rem;
-      }
-
-      .skill p {
-        margin-bottom: 0;
-        color: var(--muted);
-        font-size: 0.93rem;
+      .section-head p {
+        margin: 0.35em 0 0;
+        color: rgba(255, 250, 240, 0.72);
+        font-size: 20px;
         line-height: 1.55;
       }
 
-      .contact {
-        margin-bottom: 56px;
-        padding: 34px;
+      .work {
+        display: grid;
+        gap: 24px;
+      }
+
+      .tab {
+        position: relative;
+        min-height: 430px;
+        overflow: hidden;
+        isolation: isolate;
         border: 1px solid var(--line);
-        border-radius: 8px;
-        background: var(--ink);
-        color: var(--paper);
+        border-radius: 18px;
+        background: var(--panel);
+        transition:
+          transform 0.8s var(--ease),
+          border-color 0.8s var(--ease),
+          box-shadow 0.8s var(--ease);
       }
 
-      .contact p {
-        max-width: 68ch;
-        color: rgba(255, 255, 255, 0.76);
-        line-height: 1.7;
+      .tab:hover {
+        transform: translateY(-6px);
+        border-color: rgba(255, 250, 240, 0.32);
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
       }
 
-      .contact .button.secondary {
-        border-color: rgba(255, 255, 255, 0.45);
-        color: var(--paper);
+      .tab-open {
+        position: absolute;
+        right: 28px;
+        bottom: 24px;
+        z-index: 3;
+        border: 1px solid rgba(255, 250, 240, 0.18);
+        border-radius: 999px;
+        padding: 8px 14px;
+        color: var(--ink);
+        background: rgba(255, 250, 240, 0.08);
+        font-size: 13px;
+        font-weight: 700;
       }
 
-      footer {
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-      }
-
-      footer div {
-        width: min(1120px, calc(100vw - 32px));
-        margin: 0 auto;
-        padding: 24px 0;
+      .project-kicker {
+        margin: 0 0 18px;
         display: flex;
         justify-content: space-between;
         gap: 18px;
-        font-size: 0.9rem;
+        color: rgba(255, 250, 240, 0.55);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
       }
 
-      @media (max-width: 860px) {
-        .hero,
-        .project-grid,
-        .skills {
+      .tab h3 {
+        margin: 0;
+        font-size: clamp(48px, 6vw, 86px);
+        font-weight: 500;
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+      }
+
+      .tab p {
+        color: rgba(255, 250, 240, 0.72);
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 22px;
+      }
+
+      .chips span {
+        border: 1px solid rgba(255, 250, 240, 0.14);
+        border-radius: 999px;
+        padding: 6px 11px;
+        color: rgba(255, 250, 240, 0.78);
+        background: rgba(255, 250, 240, 0.06);
+        font-size: 12px;
+      }
+
+      .tab--ceterus {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        background:
+          radial-gradient(circle at 80% 24%, rgba(106, 169, 255, 0.22), transparent 23rem),
+          linear-gradient(135deg, #0b0f18, #151d2c);
+      }
+
+      .ceterus-copy,
+      .fundops-copy,
+      .loam-copy,
+      .cloud-copy,
+      .play-copy {
+        padding: 34px 34px 82px;
+      }
+
+      .lab {
+        display: grid;
+        gap: 12px;
+        align-content: center;
+        padding: 34px;
+      }
+
+      .lab-top {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        border: 1px solid rgba(106, 169, 255, 0.24);
+        border-radius: 14px;
+        padding: 16px;
+        background: rgba(6, 10, 18, 0.72);
+      }
+
+      .lab-top b,
+      .memo b {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .lab-top span,
+      .memo span {
+        color: var(--dim);
+        font-size: 13px;
+      }
+
+      .orb {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 34% 32%, #fff, transparent 16%),
+          conic-gradient(from 40deg, var(--blue), var(--violet), var(--green), var(--blue));
+        box-shadow: 0 0 42px rgba(106, 169, 255, 0.42);
+      }
+
+      .memo-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .memo {
+        min-height: 128px;
+        border: 1px solid rgba(255, 250, 240, 0.11);
+        border-radius: 14px;
+        padding: 16px;
+        background: rgba(255, 250, 240, 0.045);
+      }
+
+      .paper-row {
+        display: grid;
+        grid-template-columns: 56px 1fr auto;
+        gap: 12px;
+        align-items: center;
+        border: 1px solid rgba(255, 250, 240, 0.1);
+        border-radius: 12px;
+        padding: 10px 12px;
+        color: rgba(255, 250, 240, 0.74);
+        background: rgba(0, 0, 0, 0.16);
+        font-size: 13px;
+      }
+
+      .paper-row em {
+        color: var(--green);
+        font-style: normal;
+      }
+
+      .tab--fundops {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+        background:
+          linear-gradient(135deg, rgba(246, 184, 90, 0.17), transparent 34%),
+          linear-gradient(180deg, #11100e, #171716);
+      }
+
+      .fundops-screen,
+      .builder {
+        display: grid;
+        align-content: center;
+        padding: 34px;
+      }
+
+      .window {
+        overflow: hidden;
+        border: 1px solid rgba(246, 184, 90, 0.28);
+        border-radius: 14px;
+        background: #151515;
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.26);
+      }
+
+      .window-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 1px solid rgba(255, 250, 240, 0.08);
+        padding: 12px 14px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--amber);
+      }
+
+      .dot:nth-child(2) { background: var(--green); }
+      .dot:nth-child(3) { background: var(--rose); }
+
+      .window-body {
+        padding: 16px;
+      }
+
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      .metric {
+        border: 1px solid rgba(255, 250, 240, 0.08);
+        border-radius: 10px;
+        padding: 12px;
+        background: rgba(255, 250, 240, 0.04);
+      }
+
+      .metric b {
+        display: block;
+        font-size: 20px;
+      }
+
+      .metric span {
+        color: var(--dim);
+        font-size: 12px;
+      }
+
+      .sheet {
+        margin-top: 14px;
+        border: 1px solid rgba(255, 250, 240, 0.08);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1.1fr 0.7fr 0.7fr 0.7fr;
+        gap: 1px;
+        background: rgba(255, 250, 240, 0.08);
+        font-size: 12px;
+      }
+
+      .row span {
+        padding: 9px;
+        background: #171717;
+      }
+
+      .row:first-child span {
+        color: var(--amber);
+        font-weight: 700;
+      }
+
+      .tab--loam {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        background:
+          radial-gradient(circle at 25% 30%, rgba(67, 217, 157, 0.14), transparent 22rem),
+          #070b09;
+        font-family:
+          "SFMono-Regular",
+          Consolas,
+          ui-monospace,
+          monospace;
+      }
+
+      .loam-terminal {
+        padding: 28px;
+        display: grid;
+        align-content: center;
+      }
+
+      .terminal {
+        border: 1px solid rgba(67, 217, 157, 0.25);
+        border-radius: 14px;
+        background: rgba(0, 0, 0, 0.52);
+        overflow: hidden;
+      }
+
+      .term-bar {
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(67, 217, 157, 0.18);
+        color: var(--green);
+        font-size: 12px;
+      }
+
+      .term-body {
+        padding: 16px;
+        color: #d8ffe9;
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .term-body b {
+        color: var(--rose);
+        font-weight: 600;
+      }
+
+      .term-body em {
+        color: var(--green);
+        font-style: normal;
+      }
+
+      .tab--loam h3 {
+        letter-spacing: -0.06em;
+      }
+
+      .tab--cloud {
+        display: grid;
+        grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+        background:
+          linear-gradient(135deg, rgba(172, 139, 255, 0.18), transparent 40%),
+          #111019;
+      }
+
+      .builder-shell {
+        border: 1px solid rgba(172, 139, 255, 0.22);
+        border-radius: 18px;
+        padding: 16px;
+        background: rgba(255, 250, 240, 0.05);
+      }
+
+      .prompt {
+        border: 1px solid rgba(255, 250, 240, 0.1);
+        border-radius: 12px;
+        padding: 14px;
+        background: rgba(0, 0, 0, 0.22);
+        color: rgba(255, 250, 240, 0.82);
+      }
+
+      .app-grid,
+      .play-wall {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .mini-app,
+      .toy {
+        border: 1px solid rgba(255, 250, 240, 0.1);
+        border-radius: 12px;
+        padding: 12px;
+        background: rgba(255, 250, 240, 0.045);
+      }
+
+      .mini-app {
+        min-height: 92px;
+      }
+
+      .mini-app b,
+      .toy b {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .mini-line {
+        height: 7px;
+        margin-top: 6px;
+        border-radius: 999px;
+        background: rgba(255, 250, 240, 0.15);
+      }
+
+      .tab--play {
+        min-height: 360px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        background:
+          radial-gradient(circle at 78% 30%, rgba(255, 101, 127, 0.22), transparent 22rem),
+          linear-gradient(135deg, #171018, #0f0e14);
+      }
+
+      .play-wall {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 34px;
+      }
+
+      .toy {
+        min-height: 132px;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+          rgba(255, 250, 240, 0.045);
+      }
+
+      .toy:nth-child(1) { color: var(--blue); }
+      .toy:nth-child(2) { color: var(--amber); }
+      .toy:nth-child(3) { color: var(--green); }
+      .toy:nth-child(4) { color: var(--rose); }
+
+      .toy b {
+        color: var(--ink);
+      }
+
+      .toy span {
+        color: rgba(255, 250, 240, 0.58);
+        font-size: 13px;
+      }
+
+      .about-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .about-list li {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 440px);
+        gap: 44px;
+        padding: 22px 0;
+        border-bottom: 1px solid var(--line);
+        color: rgba(255, 250, 240, 0.76);
+        font-size: 20px;
+      }
+
+      .about-list span:first-child {
+        color: var(--dim);
+      }
+
+      .contact-link {
+        display: inline-block;
+        margin-top: 12px;
+        font-size: clamp(36px, 7vw, 102px);
+        line-height: 1;
+        letter-spacing: -0.05em;
+        transition:
+          transform 0.6s var(--ease),
+          text-shadow 0.6s var(--ease);
+      }
+
+      .contact-link:hover {
+        transform: translateX(8px);
+        text-shadow:
+          -4px 0 var(--rose),
+          4px 0 var(--blue),
+          0 4px var(--green);
+      }
+
+      .footer {
+        padding: 0 0 42px;
+      }
+
+      .footer-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        border-top: 1px solid var(--line);
+        padding-top: 20px;
+        color: var(--dim);
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition:
+          opacity 0.9s var(--ease),
+          transform 0.9s var(--ease);
+      }
+
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (max-width: 960px) {
+        .hero-grid,
+        .section-head,
+        .tab--ceterus,
+        .tab--fundops,
+        .tab--loam,
+        .tab--cloud,
+        .tab--play,
+        .about-list li {
           grid-template-columns: 1fr;
         }
 
-        .hero {
-          min-height: auto;
-          padding-top: 36px;
+        .hero-copy {
+          padding-bottom: 0;
         }
 
-        .section-heading {
-          align-items: flex-start;
-          flex-direction: column;
+        .tab {
+          min-height: 0;
+        }
+
+        .tab-open {
+          position: static;
+          display: inline-block;
+          margin: 0 28px 26px;
         }
       }
 
-      @media (max-width: 620px) {
-        nav {
+      @media (max-width: 640px) {
+        .nav {
           align-items: flex-start;
+          gap: 14px;
           flex-direction: column;
-          padding: 14px 0;
+          padding-top: 14px;
         }
 
         .nav-links {
           width: 100%;
           justify-content: space-between;
-          gap: 10px;
         }
 
-        .profile-top,
-        footer div {
-          align-items: flex-start;
-          flex-direction: column;
+        .nav-links a {
+          padding: 8px 10px;
+          font-size: 13px;
         }
 
-        .stats {
+        h1 {
+          font-size: clamp(58px, 19vw, 86px);
+        }
+
+        .hero-grid {
+          padding-top: 132px;
+        }
+
+        .memo-grid,
+        .metric-grid,
+        .app-grid,
+        .play-wall {
           grid-template-columns: 1fr;
         }
 
-        .actions {
+        .row {
+          grid-template-columns: 1fr 0.7fr;
+        }
+
+        .row span:nth-child(3),
+        .row span:nth-child(4) {
+          display: none;
+        }
+
+        .footer-row {
           flex-direction: column;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
         }
       }
     </style>
   </head>
   <body>
-    <div class="site-shell">
-      <header>
-        <nav aria-label="Primary navigation">
-          <a class="brand" href="#top" aria-label="Noor Zeb Khan home">
-            <span class="brand-mark">NZ</span>
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="mark" href="#top"><i></i>Noor's Gallery</a>
+      <div class="nav-links">
+        <a href="#work">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Say hi</a>
+      </div>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="prism" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="wrap hero-grid">
+        <div>
+          <h1>I make things for fun and work.</h1>
+        </div>
+        <div class="hero-copy">
+          <p class="meta">
             <span>Noor Zeb Khan</span>
-          </a>
-          <div class="nav-links">
-            <a href="#projects">Projects</a>
-            <a href="#work">Work</a>
-            <a href="#contact">Contact</a>
+            <span>tools, agents, finance ops, small strange ideas</span>
+            <a href="#work">Down to the wall</a>
+          </p>
+          <p class="lead">
+            This is where I keep the things I build: some are serious internal
+            tools, some are experiments that got out of hand, and all of them
+            started with "wait, could I just make that?"
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#work">View the projects</a>
+            <a class="button" href="https://github.com/nfzkbh201">GitHub</a>
           </div>
-        </nav>
-      </header>
-
-      <main id="top">
-        <section class="hero" aria-labelledby="intro-title">
-          <div>
-            <p class="eyebrow">AI systems, benchmarks, and financial tools</p>
-            <h1 id="intro-title">Building useful software out of messy work.</h1>
-            <p class="lead">
-              I build practical AI and automation systems: research agents,
-              evaluation benchmarks, internal software runtimes, and finance
-              workflows that turn spreadsheets and scattered data into usable
-              tools.
-            </p>
-            <div class="actions">
-              <a class="button" href="#projects">View Projects</a>
-              <a class="button secondary" href="https://github.com/nfzkbh201">
-                GitHub Profile
-              </a>
+          <div class="profile">
+            <img src="https://avatars.githubusercontent.com/u/307499332?v=4" alt="Noor Zeb Khan GitHub avatar" />
+            <div>
+              <b>nfzkbh201</b>
+              <span>building useful little worlds</span>
             </div>
           </div>
+        </div>
+      </div>
+    </header>
 
-          <aside class="profile-panel" aria-label="GitHub profile summary">
-            <div class="profile-top">
-              <img
-                class="avatar"
-                src="https://avatars.githubusercontent.com/u/307499332?v=4"
-                alt="Noor Zeb Khan GitHub avatar"
-              />
-              <div>
-                <h2>nfzkbh201</h2>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span><em>Ceterus</em></span>
+        <span>Sarmayacar FundOps</span>
+        <span><em>Loam</em></span>
+        <span>Small Software Cloud</span>
+        <span>finance automation</span>
+        <span><em>agent security</em></span>
+        <span>late-night prototypes</span>
+        <span><em>Ceterus</em></span>
+        <span>Sarmayacar FundOps</span>
+        <span><em>Loam</em></span>
+        <span>Small Software Cloud</span>
+        <span>finance automation</span>
+      </div>
+    </div>
+
+    <main>
+      <section id="work">
+        <div class="wrap">
+          <p class="eyebrow reveal"><span>Projects</span><small>Click, skim, poke around.</small></p>
+          <div class="work">
+            <article class="tab tab--ceterus reveal">
+              <div class="ceterus-copy">
+                <p class="project-kicker"><span>01 / AI-native social science lab</span><span>work + research</span></p>
+                <h3>Ceterus</h3>
                 <p>
-                  Project portfolio for tools, experiments, benchmarks, and
-                  shipped internal software.
+                  An economics research workspace built around Nash, an internal
+                  co-economist that turns open questions into hypotheses, model
+                  components, evidence, critiques, memos, and next research moves.
                 </p>
-              </div>
-            </div>
-            <div class="stats">
-              <div class="stat">
-                <strong>4+</strong>
-                <span>featured builds</span>
-              </div>
-              <div class="stat">
-                <strong>AI</strong>
-                <span>agents and evaluation</span>
-              </div>
-              <div class="stat">
-                <strong>Ops</strong>
-                <span>finance workflows</span>
-              </div>
-            </div>
-          </aside>
-        </section>
-
-        <section id="projects" aria-labelledby="projects-title">
-          <div class="section-heading">
-            <h2 id="projects-title">Featured Projects</h2>
-            <p>
-              A mix of public GitHub repositories and local/internal tools from
-              the current workspace.
-            </p>
-          </div>
-
-          <div class="project-grid">
-            <article class="project-card">
-              <div>
-                <div class="project-kicker">
-                  <span class="project-icon green">IR</span>
-                  <span class="tag">Research Agent</span>
+                <div class="chips">
+                  <span>research workspaces</span>
+                  <span>paper retrieval</span>
+                  <span>simulation checks</span>
+                  <span>Nash</span>
                 </div>
-                <h3>IRIS Paper Finder</h3>
-                <p>
-                  An open-source literature search agent that checks natural
-                  language paper-finding constraints against source text and
-                  returns ranked evidence-backed results.
-                </p>
               </div>
-              <div class="project-links">
-                <a href="https://github.com/nfzkbh201/rasyniristest">Repository</a>
+              <div class="lab" aria-hidden="true">
+                <div class="lab-top">
+                  <div>
+                    <b>Nash command center</b>
+                    <span>question: what changes startup survival after a liquidity shock?</span>
+                  </div>
+                  <div class="orb"></div>
+                </div>
+                <div class="memo-grid">
+                  <div class="memo"><b>Hypothesis</b><span>Credit access matters most where hiring is sticky.</span></div>
+                  <div class="memo"><b>Critique</b><span>Check sector exposure before calling this causal.</span></div>
+                  <div class="memo"><b>Model</b><span>Agent-based firm cash runway simulation.</span></div>
+                  <div class="memo"><b>Memo</b><span>Drafting results with confidence notes.</span></div>
+                </div>
+                <div class="paper-row"><span>paper</span><span>OpenAlex relevance score</span><em>0.91</em></div>
+                <div class="paper-row"><span>archive</span><span>verified cards saved</span><em>12</em></div>
               </div>
+              <a class="tab-open" href="https://github.com/nfzkbh201">More soon -></a>
             </article>
 
-            <article class="project-card">
-              <div>
-                <div class="project-kicker">
-                  <span class="project-icon blue">MB</span>
-                  <span class="tag">Benchmark</span>
-                </div>
-                <h3>MarigoldBench</h3>
-                <p>
-                  A computational drug-discovery benchmark where model claims are
-                  verified by deterministic recomputation rather than accepted
-                  from transcripts.
-                </p>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/nfzkbh201/MarigoldBenchtest">Repository</a>
-                <a href="https://huggingface.co/datasets/rasynai/MarigoldBench">
-                  Dataset
-                </a>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div>
-                <div class="project-kicker">
-                  <span class="project-icon gold">FO</span>
-                  <span class="tag">Streamlit App</span>
-                </div>
+            <article class="tab tab--fundops reveal">
+              <div class="fundops-copy">
+                <p class="project-kicker"><span>02 / Fund operations dashboard</span><span>work</span></p>
                 <h3>Sarmayacar FundOps</h3>
                 <p>
-                  A Streamlit finance operations app for monthly reporting,
-                  capital calls, KPI workbook uploads, generated workbooks, and
-                  run summaries.
+                  A Streamlit operations suite for messy finance workflows:
+                  monthly reporting, KPI workbooks, source traces, capital calls,
+                  distribution notices, and generated Excel outputs.
                 </p>
+                <div class="chips">
+                  <span>Streamlit</span>
+                  <span>Excel automation</span>
+                  <span>capital calls</span>
+                  <span>monthly reporting</span>
+                </div>
               </div>
-              <div class="project-links">
-                <a href="https://github.com/nfzkbh201/sarmayacar-fundops">Repository</a>
-                <a href="https://srmcr-fund-ops.streamlit.app/">Live App</a>
+              <div class="fundops-screen" aria-hidden="true">
+                <div class="window">
+                  <div class="window-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                  <div class="window-body">
+                    <div class="metric-grid">
+                      <div class="metric"><b>11</b><span>portfolio companies mapped</span></div>
+                      <div class="metric"><b>Q2'26</b><span>template generated</span></div>
+                      <div class="metric"><b>CSV</b><span>source trace attached</span></div>
+                    </div>
+                    <div class="sheet">
+                      <div class="row"><span>Company</span><span>Status</span><span>Jan</span><span>Feb</span></div>
+                      <div class="row"><span>ABHI</span><span>ready</span><span>yes</span><span>yes</span></div>
+                      <div class="row"><span>Bykea</span><span>checked</span><span>yes</span><span>yes</span></div>
+                      <div class="row"><span>Oladoc</span><span>forecast fixed</span><span>yes</span><span>yes</span></div>
+                      <div class="row"><span>OneLoad</span><span>corrected</span><span>yes</span><span>yes</span></div>
+                    </div>
+                  </div>
+                </div>
               </div>
+              <a class="tab-open" href="https://srmcr-fund-ops.streamlit.app/">Open live app -></a>
             </article>
 
-            <article class="project-card">
-              <div>
-                <div class="project-kicker">
-                  <span class="project-icon rose">SC</span>
-                  <span class="tag">Runtime</span>
+            <article class="tab tab--loam reveal">
+              <div class="loam-terminal" aria-hidden="true">
+                <div class="terminal">
+                  <div class="term-bar">loam scan ./agent-workspace --fail-on high</div>
+                  <div class="term-body">
+                    <div><em>ABOM</em> wrote loam-abom.json</div>
+                    <div><em>policy</em> examples/policy.json loaded</div>
+                    <br />
+                    <div><b>CRITICAL</b> web access can reach shell execution</div>
+                    <div>path: browser -> agent_context -> shell_exec</div>
+                    <br />
+                    <div><b>HIGH</b> repository write access near deployment automation</div>
+                    <div>fix: split roles or require approval gates</div>
+                  </div>
                 </div>
+              </div>
+              <div class="loam-copy">
+                <p class="project-kicker"><span>03 / Agent security scanner</span><span>work + security</span></p>
+                <h3>Loam</h3>
+                <p>
+                  A dependency-free scanner for risky AI agent and MCP
+                  toolchains. It creates an Agent Bill of Materials and flags
+                  dangerous paths across browser tools, shell access, filesystem
+                  permissions, credentials, workflows, and repo write access.
+                </p>
+                <div class="chips">
+                  <span>ABOM</span>
+                  <span>MCP risk paths</span>
+                  <span>GitHub Action</span>
+                  <span>policy diff</span>
+                </div>
+              </div>
+              <a class="tab-open" href="https://github.com/nfzkbh201/loam">View repo -></a>
+            </article>
+
+            <article class="tab tab--cloud reveal">
+              <div class="cloud-copy">
+                <p class="project-kicker"><span>04 / Internal app runtime</span><span>fun becoming useful</span></p>
                 <h3>Small Software Cloud</h3>
                 <p>
-                  A local runtime experiment for AI-generated internal apps:
-                  declarative app definitions, CRUD screens, roles, file
-                  uploads, imports, jobs, and dashboards.
+                  A prototype runtime where a declarative JSON app definition
+                  becomes tables, CRUD screens, users, uploads, imports, jobs,
+                  and dashboards. The tiny dream: internal tools that assemble
+                  themselves without becoming a mess.
+                </p>
+                <div class="chips">
+                  <span>CRUD runtime</span>
+                  <span>roles</span>
+                  <span>file imports</span>
+                  <span>planner</span>
+                </div>
+              </div>
+              <div class="builder" aria-hidden="true">
+                <div class="builder-shell">
+                  <div class="prompt">Build an LP investor tracker with uploads, notes, and review status.</div>
+                  <div class="app-grid">
+                    <div class="mini-app"><b>Tables</b><div class="mini-line"></div><div class="mini-line"></div><div class="mini-line"></div></div>
+                    <div class="mini-app"><b>Roles</b><div class="mini-line"></div><div class="mini-line"></div></div>
+                    <div class="mini-app"><b>Jobs</b><div class="mini-line"></div><div class="mini-line"></div><div class="mini-line"></div></div>
+                  </div>
+                </div>
+              </div>
+              <a class="tab-open" href="https://github.com/nfzkbh201">See more -></a>
+            </article>
+
+            <article class="tab tab--play reveal">
+              <div class="play-copy">
+                <p class="project-kicker"><span>05 / Other objects on the shelf</span><span>mostly for fun</span></p>
+                <h3>Side quests</h3>
+                <p>
+                  Smaller builds, demos, integrations, and prototypes that are
+                  less "launch announcement" and more "I wanted to see if it
+                  could exist by morning."
                 </p>
               </div>
-              <div class="project-links">
-                <a href="https://github.com/nfzkbh201">More on GitHub</a>
+              <div class="play-wall" aria-hidden="true">
+                <div class="toy"><b>Monday FundOps kit</b><span>workflow boards for deals, diligence, IC, and portfolio monitoring</span></div>
+                <div class="toy"><b>Excel repair tools</b><span>formula memory, reconciliation diffs, source tracing, mapping fixes</span></div>
+                <div class="toy"><b>Vercel gateways</b><span>lightweight front doors for Streamlit apps</span></div>
+                <div class="toy"><b>Demo packs</b><span>sanitized files for live testing without leaking real data</span></div>
               </div>
+              <a class="tab-open" href="https://github.com/nfzkbh201?tab=repositories">Browse GitHub -></a>
             </article>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="work" aria-labelledby="work-title">
-          <div class="section-heading">
-            <h2 id="work-title">What I Build</h2>
-            <p>
-              Projects usually sit where AI reasoning, practical operations, and
-              product-shaped interfaces meet.
+      <section id="about">
+        <div class="wrap">
+          <p class="eyebrow reveal"><span>About</span><small>The person behind the tabs.</small></p>
+          <div class="section-head">
+            <h2 class="reveal">I like making tools that feel alive.</h2>
+            <p class="reveal">
+              My favorite projects sit between product and prototype: something
+              useful enough for real work, strange enough to teach me something,
+              and polished enough that it feels worth opening again.
             </p>
           </div>
-
-          <div class="skills">
-            <article class="skill">
-              <h3>AI Evaluation</h3>
-              <p>Benchmarks, verifiers, scoring pipelines, and careful claims.</p>
-            </article>
-            <article class="skill">
-              <h3>Research Agents</h3>
-              <p>Retrieval, ranking, evidence extraction, and evaluation loops.</p>
-            </article>
-            <article class="skill">
-              <h3>Finance Automation</h3>
-              <p>Spreadsheet-heavy workflows made repeatable and reviewable.</p>
-            </article>
-            <article class="skill">
-              <h3>Internal Tools</h3>
-              <p>Dashboards, upload flows, permission models, and data runtimes.</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="contact" class="contact" aria-labelledby="contact-title">
-          <p class="eyebrow">Open to interesting builds</p>
-          <h2 id="contact-title">Want to see the work?</h2>
-          <p>
-            The public repositories are on GitHub. For private or internal
-            projects, the portfolio cards summarize the systems without exposing
-            sensitive data.
-          </p>
-          <div class="actions">
-            <a class="button" href="https://github.com/nfzkbh201">
-              Open GitHub
-            </a>
-            <a class="button secondary" href="https://github.com/nfzkbh201?tab=repositories">
-              Browse Repositories
-            </a>
-          </div>
-        </section>
-      </main>
-
-      <footer>
-        <div>
-          <span>Built for GitHub Pages.</span>
-          <span>© 2026 Noor Zeb Khan</span>
+          <ul class="about-list reveal">
+            <li><span>Build mode</span><span>start with the messy workflow, then make the interface catch up</span></li>
+            <li><span>Favorite terrain</span><span>AI agents, spreadsheets, internal tools, research systems, security scanners</span></li>
+            <li><span>Current mood</span><span>ship the serious thing, keep the fun thing weird</span></li>
+          </ul>
         </div>
-      </footer>
-    </div>
+      </section>
+
+      <section id="contact">
+        <div class="wrap">
+          <p class="eyebrow reveal"><span>Say hi</span><small>Or just look around.</small></p>
+          <div class="section-head">
+            <h2 class="reveal">Want to talk about a build?</h2>
+            <p class="reveal">
+              I'm usually somewhere between a spreadsheet, a model, and a half
+              working prototype. GitHub is the easiest place to start.
+            </p>
+          </div>
+          <a class="contact-link reveal" href="https://github.com/nfzkbh201">github.com/nfzkbh201</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-row">
+        <span>© 2026 Noor Zeb Khan</span>
+        <span>Built for GitHub Pages</span>
+      </div>
+    </footer>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("in");
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    </script>
   </body>
 </html>
