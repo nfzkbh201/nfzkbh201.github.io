@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Noor Zeb Khan's project portfolio: AI systems, benchmarks, automation, and internal tools."
+    />
+    <title>Noor Zeb Khan | Projects</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f8f4;
+        --paper: #ffffff;
+        --ink: #172033;
+        --muted: #667085;
+        --line: #d9ded6;
+        --green: #0d7a61;
+        --green-dark: #075543;
+        --blue: #244f8f;
+        --gold: #b7791f;
+        --rose: #a23a52;
+        --shadow: 0 24px 70px rgba(23, 32, 51, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-shell {
+        min-height: 100vh;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid rgba(217, 222, 214, 0.85);
+        background: rgba(247, 248, 244, 0.88);
+        backdrop-filter: blur(14px);
+      }
+
+      nav {
+        width: min(1120px, calc(100vw - 32px));
+        min-height: 64px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        font-weight: 800;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--green-dark);
+        background: var(--paper);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+      }
+
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+
+      main {
+        width: min(1120px, calc(100vw - 32px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        min-height: calc(100vh - 64px);
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+        gap: clamp(28px, 5vw, 72px);
+        align-items: center;
+        padding: 48px 0 72px;
+      }
+
+      .eyebrow {
+        margin: 0 0 14px;
+        color: var(--green-dark);
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        font-size: clamp(3rem, 8vw, 6.75rem);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 68ch;
+        margin-bottom: 30px;
+        color: #3f4b5f;
+        font-size: clamp(1.08rem, 2vw, 1.28rem);
+        line-height: 1.75;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .button {
+        min-height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        border: 1px solid var(--green);
+        border-radius: 6px;
+        padding: 0 18px;
+        color: var(--paper);
+        background: var(--green);
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .button.secondary {
+        color: var(--green-dark);
+        background: transparent;
+      }
+
+      .profile-panel {
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        box-shadow: var(--shadow);
+      }
+
+      .profile-top {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .avatar {
+        width: 92px;
+        height: 92px;
+        flex: 0 0 auto;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 1px solid var(--line);
+      }
+
+      .profile-panel h2 {
+        margin-bottom: 6px;
+        font-size: 1.35rem;
+      }
+
+      .profile-panel p {
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .stat {
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfcfa;
+      }
+
+      .stat strong {
+        display: block;
+        color: var(--ink);
+        font-size: 1.35rem;
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        line-height: 1.35;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 24px;
+      }
+
+      .section-heading h2 {
+        margin-bottom: 0;
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .section-heading p {
+        max-width: 44ch;
+        margin-bottom: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .project-card {
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 22px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+      }
+
+      .project-kicker {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .project-icon {
+        width: 46px;
+        height: 46px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        color: var(--paper);
+        font-weight: 900;
+      }
+
+      .project-icon.green {
+        background: var(--green);
+      }
+
+      .project-icon.blue {
+        background: var(--blue);
+      }
+
+      .project-icon.gold {
+        background: var(--gold);
+      }
+
+      .project-icon.rose {
+        background: var(--rose);
+      }
+
+      .tag {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 6px 10px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .project-card h3 {
+        margin-bottom: 10px;
+        font-size: 1.45rem;
+      }
+
+      .project-card p {
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .project-links a {
+        color: var(--green-dark);
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .project-links a:hover {
+        text-decoration: underline;
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+
+      .skill {
+        min-height: 118px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfcfa;
+      }
+
+      .skill h3 {
+        margin-bottom: 8px;
+        font-size: 1rem;
+      }
+
+      .skill p {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 0.93rem;
+        line-height: 1.55;
+      }
+
+      .contact {
+        margin-bottom: 56px;
+        padding: 34px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .contact p {
+        max-width: 68ch;
+        color: rgba(255, 255, 255, 0.76);
+        line-height: 1.7;
+      }
+
+      .contact .button.secondary {
+        border-color: rgba(255, 255, 255, 0.45);
+        color: var(--paper);
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+      }
+
+      footer div {
+        width: min(1120px, calc(100vw - 32px));
+        margin: 0 auto;
+        padding: 24px 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 860px) {
+        .hero,
+        .project-grid,
+        .skills {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: auto;
+          padding-top: 36px;
+        }
+
+        .section-heading {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 620px) {
+        nav {
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 14px 0;
+        }
+
+        .nav-links {
+          width: 100%;
+          justify-content: space-between;
+          gap: 10px;
+        }
+
+        .profile-top,
+        footer div {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header>
+        <nav aria-label="Primary navigation">
+          <a class="brand" href="#top" aria-label="Noor Zeb Khan home">
+            <span class="brand-mark">NZ</span>
+            <span>Noor Zeb Khan</span>
+          </a>
+          <div class="nav-links">
+            <a href="#projects">Projects</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="intro-title">
+          <div>
+            <p class="eyebrow">AI systems, benchmarks, and financial tools</p>
+            <h1 id="intro-title">Building useful software out of messy work.</h1>
+            <p class="lead">
+              I build practical AI and automation systems: research agents,
+              evaluation benchmarks, internal software runtimes, and finance
+              workflows that turn spreadsheets and scattered data into usable
+              tools.
+            </p>
+            <div class="actions">
+              <a class="button" href="#projects">View Projects</a>
+              <a class="button secondary" href="https://github.com/nfzkbh201">
+                GitHub Profile
+              </a>
+            </div>
+          </div>
+
+          <aside class="profile-panel" aria-label="GitHub profile summary">
+            <div class="profile-top">
+              <img
+                class="avatar"
+                src="https://avatars.githubusercontent.com/u/307499332?v=4"
+                alt="Noor Zeb Khan GitHub avatar"
+              />
+              <div>
+                <h2>nfzkbh201</h2>
+                <p>
+                  Project portfolio for tools, experiments, benchmarks, and
+                  shipped internal software.
+                </p>
+              </div>
+            </div>
+            <div class="stats">
+              <div class="stat">
+                <strong>4+</strong>
+                <span>featured builds</span>
+              </div>
+              <div class="stat">
+                <strong>AI</strong>
+                <span>agents and evaluation</span>
+              </div>
+              <div class="stat">
+                <strong>Ops</strong>
+                <span>finance workflows</span>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section id="projects" aria-labelledby="projects-title">
+          <div class="section-heading">
+            <h2 id="projects-title">Featured Projects</h2>
+            <p>
+              A mix of public GitHub repositories and local/internal tools from
+              the current workspace.
+            </p>
+          </div>
+
+          <div class="project-grid">
+            <article class="project-card">
+              <div>
+                <div class="project-kicker">
+                  <span class="project-icon green">IR</span>
+                  <span class="tag">Research Agent</span>
+                </div>
+                <h3>IRIS Paper Finder</h3>
+                <p>
+                  An open-source literature search agent that checks natural
+                  language paper-finding constraints against source text and
+                  returns ranked evidence-backed results.
+                </p>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/nfzkbh201/rasyniristest">Repository</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div>
+                <div class="project-kicker">
+                  <span class="project-icon blue">MB</span>
+                  <span class="tag">Benchmark</span>
+                </div>
+                <h3>MarigoldBench</h3>
+                <p>
+                  A computational drug-discovery benchmark where model claims are
+                  verified by deterministic recomputation rather than accepted
+                  from transcripts.
+                </p>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/nfzkbh201/MarigoldBenchtest">Repository</a>
+                <a href="https://huggingface.co/datasets/rasynai/MarigoldBench">
+                  Dataset
+                </a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div>
+                <div class="project-kicker">
+                  <span class="project-icon gold">FO</span>
+                  <span class="tag">Streamlit App</span>
+                </div>
+                <h3>Sarmayacar FundOps</h3>
+                <p>
+                  A Streamlit finance operations app for monthly reporting,
+                  capital calls, KPI workbook uploads, generated workbooks, and
+                  run summaries.
+                </p>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/nfzkbh201/sarmayacar-fundops">Repository</a>
+                <a href="https://srmcr-fund-ops.streamlit.app/">Live App</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div>
+                <div class="project-kicker">
+                  <span class="project-icon rose">SC</span>
+                  <span class="tag">Runtime</span>
+                </div>
+                <h3>Small Software Cloud</h3>
+                <p>
+                  A local runtime experiment for AI-generated internal apps:
+                  declarative app definitions, CRUD screens, roles, file
+                  uploads, imports, jobs, and dashboards.
+                </p>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/nfzkbh201">More on GitHub</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="work" aria-labelledby="work-title">
+          <div class="section-heading">
+            <h2 id="work-title">What I Build</h2>
+            <p>
+              Projects usually sit where AI reasoning, practical operations, and
+              product-shaped interfaces meet.
+            </p>
+          </div>
+
+          <div class="skills">
+            <article class="skill">
+              <h3>AI Evaluation</h3>
+              <p>Benchmarks, verifiers, scoring pipelines, and careful claims.</p>
+            </article>
+            <article class="skill">
+              <h3>Research Agents</h3>
+              <p>Retrieval, ranking, evidence extraction, and evaluation loops.</p>
+            </article>
+            <article class="skill">
+              <h3>Finance Automation</h3>
+              <p>Spreadsheet-heavy workflows made repeatable and reviewable.</p>
+            </article>
+            <article class="skill">
+              <h3>Internal Tools</h3>
+              <p>Dashboards, upload flows, permission models, and data runtimes.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="contact" class="contact" aria-labelledby="contact-title">
+          <p class="eyebrow">Open to interesting builds</p>
+          <h2 id="contact-title">Want to see the work?</h2>
+          <p>
+            The public repositories are on GitHub. For private or internal
+            projects, the portfolio cards summarize the systems without exposing
+            sensitive data.
+          </p>
+          <div class="actions">
+            <a class="button" href="https://github.com/nfzkbh201">
+              Open GitHub
+            </a>
+            <a class="button secondary" href="https://github.com/nfzkbh201?tab=repositories">
+              Browse Repositories
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div>
+          <span>Built for GitHub Pages.</span>
+          <span>© 2026 Noor Zeb Khan</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
