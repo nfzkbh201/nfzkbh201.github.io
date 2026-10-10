@@ -442,6 +442,7 @@
         border: 1px solid var(--line);
         border-radius: 18px;
         background: var(--panel);
+        cursor: pointer;
         transition:
           transform 0.8s var(--ease),
           border-color 0.8s var(--ease),
@@ -454,6 +455,21 @@
         box-shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
       }
 
+      .tab::after {
+        position: absolute;
+        inset: auto 0 0;
+        height: 2px;
+        content: "";
+        opacity: 0.86;
+        background: linear-gradient(90deg, transparent, var(--tab-accent, var(--cyan)), transparent);
+        transform: scaleX(0.18);
+        transition: transform 0.8s var(--ease);
+      }
+
+      .tab:hover::after {
+        transform: scaleX(1);
+      }
+
       .tab-open {
         position: absolute;
         right: 28px;
@@ -464,6 +480,8 @@
         padding: 8px 14px;
         color: var(--ink);
         background: rgba(255, 250, 240, 0.08);
+        cursor: pointer;
+        font: inherit;
         font-size: 13px;
         font-weight: 700;
       }
@@ -508,6 +526,7 @@
       }
 
       .tab--ceterus {
+        --tab-accent: var(--cyan);
         display: grid;
         grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
         background:
@@ -597,6 +616,7 @@
       }
 
       .tab--fundops {
+        --tab-accent: var(--amber);
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
         background:
@@ -691,6 +711,7 @@
       }
 
       .tab--loam {
+        --tab-accent: var(--green);
         display: grid;
         grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
         background:
@@ -746,6 +767,7 @@
       }
 
       .tab--cloud {
+        --tab-accent: var(--violet);
         display: grid;
         grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
         background:
@@ -803,6 +825,7 @@
       }
 
       .tab--play {
+        --tab-accent: var(--rose);
         min-height: 360px;
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -959,6 +982,165 @@
         color: var(--ink);
       }
 
+      .project-modal {
+        width: min(1040px, calc(100% - 32px));
+        max-height: min(820px, calc(100vh - 40px));
+        overflow: hidden;
+        border: 1px solid rgba(248, 242, 230, 0.18);
+        border-radius: 24px;
+        padding: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 18% 14%, color-mix(in srgb, var(--modal-accent, var(--cyan)) 24%, transparent), transparent 22rem),
+          linear-gradient(145deg, rgba(18, 24, 24, 0.98), rgba(4, 6, 6, 0.98));
+        box-shadow: 0 34px 120px rgba(0, 0, 0, 0.62);
+      }
+
+      .project-modal::backdrop {
+        background: rgba(0, 0, 0, 0.72);
+        backdrop-filter: blur(10px);
+      }
+
+      .project-detail {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.7fr);
+        gap: 28px;
+        max-height: inherit;
+        overflow: auto;
+        padding: 28px;
+      }
+
+      .project-detail__close {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        z-index: 2;
+        width: 38px;
+        height: 38px;
+        border: 1px solid rgba(248, 242, 230, 0.18);
+        border-radius: 999px;
+        color: var(--ink);
+        background: rgba(248, 242, 230, 0.08);
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      .project-detail__kicker {
+        margin: 0 0 14px;
+        color: var(--dim);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .project-detail h2 {
+        margin: 0;
+        font-size: 5.4rem;
+        font-weight: 400;
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .project-detail__summary {
+        max-width: 720px;
+        margin: 24px 0 0;
+        color: rgba(248, 242, 230, 0.78);
+        font-size: 1.25rem;
+        line-height: 1.55;
+      }
+
+      .project-detail__chips,
+      .project-detail__links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        margin-top: 22px;
+      }
+
+      .project-detail__chips span,
+      .project-detail__links a {
+        border: 1px solid rgba(248, 242, 230, 0.14);
+        border-radius: 999px;
+        padding: 8px 12px;
+        color: rgba(248, 242, 230, 0.78);
+        background: rgba(248, 242, 230, 0.055);
+        font-size: 13px;
+      }
+
+      .project-detail__links a:first-child {
+        color: #020404;
+        border-color: transparent;
+        background: var(--modal-accent, var(--cyan));
+        font-weight: 700;
+      }
+
+      .project-detail__side {
+        display: grid;
+        gap: 14px;
+        align-content: start;
+      }
+
+      .project-detail__panel {
+        border: 1px solid rgba(248, 242, 230, 0.12);
+        border-radius: 18px;
+        padding: 18px;
+        background: rgba(248, 242, 230, 0.045);
+      }
+
+      .project-detail__panel b {
+        display: block;
+        margin-bottom: 12px;
+        color: rgba(248, 242, 230, 0.62);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .project-detail__panel ul {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        color: rgba(248, 242, 230, 0.8);
+      }
+
+      .project-detail__panel li::before {
+        content: "";
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        margin-right: 10px;
+        border-radius: 999px;
+        background: var(--modal-accent, var(--cyan));
+      }
+
+      .project-detail__mini {
+        min-height: 180px;
+        border: 1px solid rgba(248, 242, 230, 0.12);
+        border-radius: 18px;
+        padding: 18px;
+        background:
+          linear-gradient(135deg, color-mix(in srgb, var(--modal-accent, var(--cyan)) 24%, transparent), transparent),
+          rgba(0, 0, 0, 0.28);
+      }
+
+      .project-detail__meter {
+        height: 10px;
+        margin-top: 12px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(248, 242, 230, 0.12);
+      }
+
+      .project-detail__meter span {
+        display: block;
+        width: var(--w, 62%);
+        height: 100%;
+        border-radius: inherit;
+        background: var(--modal-accent, var(--cyan));
+      }
+
       .reveal {
         opacity: 1;
         transform: none;
@@ -1001,6 +1183,14 @@
 
         .contact-email {
           font-size: 4.8rem;
+        }
+
+        .project-detail {
+          grid-template-columns: 1fr;
+        }
+
+        .project-detail h2 {
+          font-size: 4.2rem;
         }
 
         .globe-stage {
@@ -1062,6 +1252,14 @@
         .contact-email {
           margin-top: 40px;
           font-size: 2.35rem;
+        }
+
+        .project-detail {
+          padding: 20px;
+        }
+
+        .project-detail h2 {
+          font-size: 3rem;
         }
 
         .hero-grid {
@@ -1187,7 +1385,7 @@
         <div class="wrap">
           <p class="eyebrow reveal"><span>Projects</span><small>Click, skim, poke around.</small></p>
           <div class="work">
-            <article class="tab tab--ceterus reveal">
+            <article class="tab tab--ceterus reveal" data-project="ceterus" tabindex="0">
               <div class="ceterus-copy">
                 <p class="project-kicker"><span>01 / AI-native social science lab</span><span>work + research</span></p>
                 <h3>Ceterus</h3>
@@ -1220,10 +1418,10 @@
                 <div class="paper-row"><span>paper</span><span>OpenAlex relevance score</span><em>0.91</em></div>
                 <div class="paper-row"><span>archive</span><span>verified cards saved</span><em>12</em></div>
               </div>
-              <a class="tab-open" href="https://github.com/nfzkbh201">More soon -></a>
+              <button class="tab-open" type="button" data-project="ceterus">Open overview -></button>
             </article>
 
-            <article class="tab tab--fundops reveal">
+            <article class="tab tab--fundops reveal" data-project="fundops" tabindex="0">
               <div class="fundops-copy">
                 <p class="project-kicker"><span>02 / Fund operations dashboard</span><span>work</span></p>
                 <h3>Sarmayacar FundOps</h3>
@@ -1258,10 +1456,10 @@
                   </div>
                 </div>
               </div>
-              <a class="tab-open" href="https://srmcr-fund-ops.streamlit.app/">Open live app -></a>
+              <button class="tab-open" type="button" data-project="fundops">Open overview -></button>
             </article>
 
-            <article class="tab tab--loam reveal">
+            <article class="tab tab--loam reveal" data-project="loam" tabindex="0">
               <div class="loam-terminal" aria-hidden="true">
                 <div class="terminal">
                   <div class="term-bar">loam scan ./agent-workspace --fail-on high</div>
@@ -1293,10 +1491,10 @@
                   <span>policy diff</span>
                 </div>
               </div>
-              <a class="tab-open" href="https://github.com/nfzkbh201/loam">View repo -></a>
+              <button class="tab-open" type="button" data-project="loam">Open overview -></button>
             </article>
 
-            <article class="tab tab--cloud reveal">
+            <article class="tab tab--cloud reveal" data-project="cloud" tabindex="0">
               <div class="cloud-copy">
                 <p class="project-kicker"><span>04 / Internal app runtime</span><span>fun becoming useful</span></p>
                 <h3>Small Software Cloud</h3>
@@ -1323,10 +1521,10 @@
                   </div>
                 </div>
               </div>
-              <a class="tab-open" href="https://github.com/nfzkbh201">See more -></a>
+              <button class="tab-open" type="button" data-project="cloud">Open overview -></button>
             </article>
 
-            <article class="tab tab--play reveal">
+            <article class="tab tab--play reveal" data-project="sidequests" tabindex="0">
               <div class="play-copy">
                 <p class="project-kicker"><span>05 / Other objects on the shelf</span><span>mostly for fun</span></p>
                 <h3>Side quests</h3>
@@ -1342,7 +1540,7 @@
                 <div class="toy"><b>Vercel gateways</b><span>lightweight front doors for Streamlit apps</span></div>
                 <div class="toy"><b>Demo packs</b><span>sanitized files for live testing without leaking real data</span></div>
               </div>
-              <a class="tab-open" href="https://github.com/nfzkbh201?tab=repositories">Browse GitHub -></a>
+              <button class="tab-open" type="button" data-project="sidequests">Open overview -></button>
             </article>
           </div>
         </div>
@@ -1389,6 +1587,26 @@
       </section>
     </main>
 
+    <dialog class="project-modal" id="project-modal" aria-labelledby="project-title">
+      <button class="project-detail__close" type="button" aria-label="Close project overview">×</button>
+      <div class="project-detail">
+        <div>
+          <p class="project-detail__kicker" id="project-kicker"></p>
+          <h2 id="project-title"></h2>
+          <p class="project-detail__summary" id="project-summary"></p>
+          <div class="project-detail__chips" id="project-chips"></div>
+          <div class="project-detail__links" id="project-links"></div>
+        </div>
+        <div class="project-detail__side">
+          <div class="project-detail__mini" id="project-mini"></div>
+          <div class="project-detail__panel">
+            <b>What it untangles</b>
+            <ul id="project-points"></ul>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
     <footer class="footer">
       <div class="wrap footer-row">
         <span>© 2026 Noor Zeb Khan</span>
@@ -1411,6 +1629,175 @@
       );
 
       document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+      const projects = {
+        ceterus: {
+          title: "Ceterus",
+          kicker: "AI-native social science lab / work + research",
+          accent: "#2fe7d4",
+          summary:
+            "A research workspace for turning open-ended economics questions into evidence, hypotheses, critiques, simulations, and memos. It is serious research infrastructure dressed like a command center.",
+          chips: ["Nash", "paper retrieval", "evidence boards", "research memos"],
+          points: [
+            "Turns vague research questions into structured next moves",
+            "Collects and scores papers instead of letting tabs sprawl everywhere",
+            "Keeps critique, model thinking, and memo drafting in one workspace"
+          ],
+          links: [{ label: "GitHub", href: "https://github.com/nfzkbh201" }],
+          mini: [
+            ["Evidence signal", "78%"],
+            ["Research structure", "88%"],
+            ["Late-night curiosity", "96%"]
+          ]
+        },
+        fundops: {
+          title: "Sarmayacar FundOps",
+          kicker: "VC operations suite / real firm workflow",
+          accent: "#f3c363",
+          summary:
+            "Built for my firm, Sarmayacar, to automate the annoying but important parts of VC ops: monthly reporting, KPI workbooks, capital calls, source traces, and generated Excel outputs.",
+          chips: ["Streamlit", "Excel automation", "capital calls", "source traces"],
+          points: [
+            "Cuts repetitive reporting work into repeatable flows",
+            "Keeps source files and generated outputs tied together",
+            "Makes messy finance workflows easier to audit and rerun"
+          ],
+          links: [{ label: "Open live app", href: "https://srmcr-fund-ops.streamlit.app/" }],
+          mini: [
+            ["Manual Excel pain", "22%"],
+            ["Workflow clarity", "86%"],
+            ["VC ops automation", "91%"]
+          ]
+        },
+        loam: {
+          title: "Loam",
+          kicker: "agent security scanner / work + security",
+          accent: "#8aff8a",
+          summary:
+            "A dependency-free scanner for risky AI agent and MCP toolchains. It maps tool access, writes an Agent Bill of Materials, and flags scary paths before they become production incidents.",
+          chips: ["ABOM", "MCP risk paths", "policy diff", "GitHub Action"],
+          points: [
+            "Finds dangerous chains like browser to shell to repo write",
+            "Turns invisible agent permissions into a readable bill of materials",
+            "Keeps security reviews practical enough to run before shipping"
+          ],
+          links: [{ label: "View repo", href: "https://github.com/nfzkbh201/loam" }],
+          mini: [
+            ["Risk visibility", "93%"],
+            ["Dependencies", "4%"],
+            ["Agent chaos", "31%"]
+          ]
+        },
+        cloud: {
+          title: "Small Software Cloud",
+          kicker: "internal app runtime / fun becoming useful",
+          accent: "#9d8cff",
+          summary:
+            "A prototype runtime where a JSON app definition becomes tables, CRUD screens, users, uploads, imports, jobs, and dashboards. The goal is internal tools that assemble quickly without becoming a mess.",
+          chips: ["CRUD runtime", "roles", "uploads", "planner"],
+          points: [
+            "Turns internal-tool ideas into working app surfaces",
+            "Keeps tables, roles, uploads, and jobs in one declarative shape",
+            "Explores how small software can be generated without losing control"
+          ],
+          links: [{ label: "GitHub", href: "https://github.com/nfzkbh201" }],
+          mini: [
+            ["Boilerplate removed", "81%"],
+            ["Internal tool energy", "94%"],
+            ["JSON stubbornness", "67%"]
+          ]
+        },
+        sidequests: {
+          title: "Side quests",
+          kicker: "small builds / experiments and useful scraps",
+          accent: "#ff6e7f",
+          summary:
+            "The shelf for smaller prototypes: Excel repair tools, workflow boards, Vercel gateways, demo packs, and other things that started as 'can I make this by morning?'",
+          chips: ["Excel repairs", "demo packs", "workflow boards", "Vercel gateways"],
+          points: [
+            "Makes small annoyances visible enough to fix",
+            "Turns experiments into reusable pieces for bigger builds",
+            "Keeps the site honest: some projects are polished, some are sparks"
+          ],
+          links: [{ label: "Browse GitHub", href: "https://github.com/nfzkbh201?tab=repositories" }],
+          mini: [
+            ["Useful scraps", "89%"],
+            ["Morning deadline", "73%"],
+            ["Fun weirdness", "97%"]
+          ]
+        }
+      };
+
+      const modal = document.querySelector("#project-modal");
+      const modalClose = document.querySelector(".project-detail__close");
+      const modalKicker = document.querySelector("#project-kicker");
+      const modalTitle = document.querySelector("#project-title");
+      const modalSummary = document.querySelector("#project-summary");
+      const modalChips = document.querySelector("#project-chips");
+      const modalLinks = document.querySelector("#project-links");
+      const modalPoints = document.querySelector("#project-points");
+      const modalMini = document.querySelector("#project-mini");
+
+      const fillList = (container, items, tagName, formatter) => {
+        container.replaceChildren();
+        items.forEach((item) => {
+          const el = document.createElement(tagName);
+          formatter(el, item);
+          container.appendChild(el);
+        });
+      };
+
+      const openProject = (id) => {
+        const project = projects[id];
+        if (!project || !modal) return;
+
+        modal.style.setProperty("--modal-accent", project.accent);
+        modalKicker.textContent = project.kicker;
+        modalTitle.textContent = project.title;
+        modalSummary.textContent = project.summary;
+
+        fillList(modalChips, project.chips, "span", (el, item) => {
+          el.textContent = item;
+        });
+
+        fillList(modalLinks, project.links, "a", (el, item) => {
+          el.textContent = item.label;
+          el.href = item.href;
+          el.target = "_blank";
+          el.rel = "noreferrer";
+        });
+
+        fillList(modalPoints, project.points, "li", (el, item) => {
+          el.textContent = item;
+        });
+
+        modalMini.replaceChildren();
+        project.mini.forEach(([label, width]) => {
+          const row = document.createElement("div");
+          row.innerHTML = `<b>${label}</b><div class="project-detail__meter"><span style="--w:${width}"></span></div>`;
+          modalMini.appendChild(row);
+        });
+
+        modal.showModal();
+      };
+
+      document.querySelectorAll(".tab[data-project]").forEach((card) => {
+        card.addEventListener("click", (event) => {
+          if (event.target.closest("a")) return;
+          openProject(card.dataset.project);
+        });
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openProject(card.dataset.project);
+          }
+        });
+      });
+
+      modalClose?.addEventListener("click", () => modal.close());
+      modal?.addEventListener("click", (event) => {
+        if (event.target === modal) modal.close();
+      });
 
       const hero = document.querySelector(".hero");
       const globeCanvas = document.querySelector("#globe");
