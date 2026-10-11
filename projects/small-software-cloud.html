@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Small Software Cloud | Noor's Gallery</title>
+    <meta name="description" content="Small Software Cloud, an internal app runtime prototype by Noor Zeb Khan." />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../project.css" />
+  </head>
+  <body style="--accent:#9d8cff; --accent-2:#2fe7d4;">
+    <nav class="detail-nav">
+      <a href="../index.html#work">&larr; Noor's Gallery</a>
+      <span class="center">Small Software Cloud · internal app runtime</span>
+      <span class="right"><a href="#how">How it works</a><a href="https://github.com/nfzkbh201">GitHub &nearr;</a></span>
+    </nav>
+
+    <main>
+      <header class="project-hero">
+        <div class="wrap project-grid">
+          <div>
+            <p class="kicker">04 / app runtime · fun becoming useful</p>
+            <div class="title-row">
+              <div class="project-icon">SSC</div>
+              <h1>Small Software Cloud</h1>
+            </div>
+            <p class="lede">
+              A prototype runtime where a declarative JSON app definition becomes
+              <strong>tables, CRUD screens, users, uploads, imports, jobs, and
+              dashboards</strong>. The tiny dream: internal tools that assemble
+              quickly without becoming a mess.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="https://github.com/nfzkbh201">Source soon &nearr;</a>
+              <a class="button" href="../index.html#work">Back to projects</a>
+            </div>
+            <div class="tags">
+              <span class="tag">CRUD runtime</span>
+              <span class="tag">roles</span>
+              <span class="tag">uploads</span>
+              <span class="tag">planner</span>
+            </div>
+          </div>
+
+          <div class="stage cloud-stage" aria-label="Small Software Cloud app builder">
+            <div class="schema">
+              <code>{
+  "app": "LP investor tracker",
+  "tables": ["funds", "contacts", "documents"],
+  "roles": ["admin", "reviewer"],
+  "jobs": ["import", "reconcile", "export"]
+}</code>
+            </div>
+            <div class="generated-app">
+              <div class="app-tabs"><span>Funds</span><span>Contacts</span><span>Uploads</span><span>Jobs</span></div>
+              <div class="mini-grid">
+                <div class="mini-cell"><b>Investor table</b><div class="mini-line"></div><div class="mini-line"></div><div class="mini-line"></div></div>
+                <div class="mini-cell"><b>Role rules</b><div class="mini-line"></div><div class="mini-line"></div></div>
+                <div class="mini-cell"><b>Upload queue</b><div class="mini-line"></div><div class="mini-line"></div><div class="mini-line"></div></div>
+                <div class="mini-cell"><b>Dashboard</b><div class="mini-line"></div><div class="mini-line"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="section" id="how">
+        <div class="wrap section-line">
+          <h2>What it explores</h2>
+          <ul class="list">
+            <li><b>Shape</b><span>Can a tiny JSON schema define most of an internal tool?</span></li>
+            <li><b>Control</b><span>How do generated apps stay editable, inspectable, and not magical in the bad way?</span></li>
+            <li><b>Speed</b><span>How fast can a workflow become usable without sacrificing basic safety?</span></li>
+            <li><b>Reuse</b><span>Tables, files, users, jobs, and dashboards should not be rebuilt from scratch every time.</span></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><span>© 2026 Noor Zeb Khan</span><a href="../index.html#contact">Say hi</a></footer>
+  </body>
+</html>

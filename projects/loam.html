@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Loam | Noor's Gallery</title>
+    <meta name="description" content="Loam, an agent security scanner by Noor Zeb Khan." />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../project.css" />
+  </head>
+  <body style="--accent:#8aff8a; --accent-2:#5aa8ff;">
+    <nav class="detail-nav">
+      <a href="../index.html#work">&larr; Noor's Gallery</a>
+      <span class="center">Loam · agent security scanner</span>
+      <span class="right"><a href="#how">How it works</a><a href="https://github.com/nfzkbh201/loam">Source &nearr;</a></span>
+    </nav>
+
+    <main>
+      <header class="project-hero">
+        <div class="wrap project-grid">
+          <div>
+            <p class="kicker">03 / security scanner · work + agents</p>
+            <div class="title-row">
+              <div class="project-icon">L</div>
+              <h1>Loam</h1>
+            </div>
+            <p class="lede">
+              A dependency-free scanner for risky AI agent and MCP toolchains.
+              It writes an <strong>Agent Bill of Materials</strong> and flags
+              dangerous paths before they become production incidents.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="https://github.com/nfzkbh201/loam">View source &nearr;</a>
+              <a class="button" href="../index.html#work">Back to projects</a>
+            </div>
+            <div class="tags">
+              <span class="tag">ABOM</span>
+              <span class="tag">MCP risk paths</span>
+              <span class="tag">GitHub Action</span>
+              <span class="tag">policy diff</span>
+            </div>
+          </div>
+
+          <div class="stage loam-stage" aria-label="Loam scanner terminal">
+            <div class="terminal-window">
+              <div class="terminal-bar">loam scan ./agent-workspace --fail-on high</div>
+              <div class="terminal-body">
+                <div>&gt; wrote loam-abom.json</div>
+                <div>&gt; loaded policy examples/policy.json</div>
+                <br />
+                <div><b>CRITICAL</b> browser tool can reach shell execution</div>
+                <div>path: browser -&gt; agent_context -&gt; shell_exec</div>
+                <br />
+                <div><b>HIGH</b> repo write access near deployment automation</div>
+                <div>fix: split roles or require approval gates</div>
+              </div>
+            </div>
+            <div class="risk-map">
+              <div class="risk-card"><strong>Browser</strong><span>network + session state</span></div>
+              <div class="risk-card"><strong>Shell</strong><span>command execution</span></div>
+              <div class="risk-card"><strong>Repo</strong><span>write + deploy workflows</span></div>
+              <div class="risk-card"><strong>Secrets</strong><span>credential exposure paths</span></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="section" id="how">
+        <div class="wrap section-line">
+          <h2>How it works</h2>
+          <ul class="list">
+            <li><b>Inventory</b><span>Reads tool definitions and permissions into an Agent Bill of Materials.</span></li>
+            <li><b>Connect</b><span>Builds paths between browser, shell, filesystem, credentials, and repo writes.</span></li>
+            <li><b>Warn</b><span>Flags combinations that are risky even when each tool looks normal alone.</span></li>
+            <li><b>Gate</b><span>Can run in CI so agent workflows fail before the dangerous version ships.</span></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><span>© 2026 Noor Zeb Khan</span><a href="../index.html#contact">Say hi</a></footer>
+  </body>
+</html>
